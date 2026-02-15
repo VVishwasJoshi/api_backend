@@ -25,19 +25,12 @@ const upload = multer({ storage: multer.memoryStorage() }); // Store files in me
 app.get('/api/knowledgebase', async (req, res) => {
     try {
         const apiKey = process.env.API_KEY;
-        // const response = await axios.get(`${CONTEXT_API_BASE_URL}/knowledgebase`, {
-        //     headers: {
-        //         'x-api-key': apiKey
-        //     }
-        // });
-        const response = await axios.get(
-  `${CONTEXT_API_BASE_URL}/knowledgebase`,
-  {
-    headers: { 'x-api-key': apiKey },
-    timeout: 8000
-  }
-);
-
+        const response = await axios.get(`${CONTEXT_API_BASE_URL}/knowledgebase`, {
+            headers: {
+                'x-api-key': apiKey
+            },
+            timeout:8000
+        });
         res.json(response.data);
     } catch (error) {
         console.error("Error listing KBs:", error.message);
